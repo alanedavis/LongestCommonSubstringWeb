@@ -1,5 +1,11 @@
 import requests
 
+"""
+Using the requests library send a 
+get request to the servers POST page 
+with the proper and improper JSON files
+"""
+
 try:
     r = requests.get(
         "http://localhost:5000/lcs",

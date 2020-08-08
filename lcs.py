@@ -8,20 +8,28 @@ def main():
 
 @app.route('/lcs', methods=['POST', 'GET'])
 def lcs():
+    # If the POST body is empty send the proper HTTP response
     if not request.form.get("setOfStrings") and not request.json:
         return Response("{'Status': 'empty'}", status=404)
 
+    # HTML form is a POST request
+    #   split the string with a blankspace delimeter
     if request.method == 'POST':
         json = request.form['setOfStrings'].split(" ")
 
+    # GET Request
+    #   Grab the values from the nested key value pair
     elif request.method == 'GET':
         json = [i['value'] for i in request.json['setOfStrings']]
 
+    # If not all strings are unique send the proper HTTP response
     if not isSet(json):
         return Response("{'Status'} : 'Not A Set'", status=406)
 
+    # Find the longest common substring
     subStr = subStrLcs(json)
 
+    # Create properly formatted JSON
     resDict = {
         "lcs" : [
             {"values" : subStr}
