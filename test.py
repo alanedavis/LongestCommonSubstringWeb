@@ -44,7 +44,7 @@ try:
 
     assert r.status_code == 404, "Status code should be 404"
 
+    print("Passed All Tests")
+
 except AssertionError:
     raise "Test Failed"
-
-print("Passed All Tests")
