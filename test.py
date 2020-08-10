@@ -9,6 +9,13 @@ with the proper and improper JSON files
 try:
     r = requests.get(
         "http://localhost:5000/lcs",
+        json= {"setOfStrings": []}
+    )
+
+    assert r.status_code == 404, "Status code should be 404"
+
+    r = requests.get(
+        "http://localhost:5000/lcs",
         json= {
         "setOfStrings": [
             {"value": "comcast"},

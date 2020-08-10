@@ -9,7 +9,7 @@ def main():
 @app.route('/lcs', methods=['POST', 'GET'])
 def lcs():
     # If the POST body is empty send the proper HTTP response
-    if not request.form.get("setOfStrings") and not request.json:
+    if not request.form.get("setOfStrings") and (not request.json or not request.json['setOfStrings']):
         return Response("{'Status': 'empty'}", status=404)
 
     # HTML form is a POST request
